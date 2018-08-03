@@ -149,8 +149,13 @@ namespace Promociones.Presentation.Api.Controllers
                 if (promocion.ProductoCategoriaIds.Except(categoriasDeProductos).Any())
                     return StatusCode(500, "Categoria de producto no valida");
             }
-            
 
+            var promotionsList = _promocionSupervisor.GetCurrentPromotions();
+            var colisionesRespuesta = _promocionSupervisor.CheckPromotionsCollisions(promocion, promotionsList);
+            if (colisionesRespuesta != "")
+            {
+                return StatusCode(500, colisionesRespuesta);
+            }
             await _promocionSupervisor.UpdatePromotion(promocion);
             return Ok();
         }

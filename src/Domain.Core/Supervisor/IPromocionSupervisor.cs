@@ -21,5 +21,6 @@ namespace Promociones.Domain.Core.Supervisor
 
         Task<bool> DeletePromotions(int[] promotions, CancellationToken ct = default(CancellationToken));
         Task<bool> CheckPromotionStatus(int idPromotion, CancellationToken ct = default(CancellationToken));
+        string CheckPromotionsCollisions(Promocion promotion, List<Promocion> activePromotions);
     }
 }
