@@ -128,21 +128,21 @@ namespace Promociones.Presentation.Api.Controllers
                 if (promocion.MedioPagoIds.Except(mediosDePagosIds).Any())
                     return StatusCode(500, "Medio de pago no valido");
             }
-            
+            // Validamos que las entidades financieras sean validas
             if (promocion.EntidadFinancieraId != null)
             {
                 var entidadesFinancierasIds = mediosDePagos.Select(x => x.IdEntidadFinanciera ?? 0).Distinct().ToArray();
                 if (promocion.EntidadFinancieraId.Except(entidadesFinancierasIds).Any())
                     return StatusCode(500, "Entidad Financiera no valida");
             }
-
+            // Validamos que los tipos de medios de pago sean validos
             if (promocion.TipoMedioPagoId != null)
             {
                 var tiposDePagosIds = mediosDePagos.Select(x => x.IdTipoPago ?? 0).Distinct().ToArray();
                 if (promocion.TipoMedioPagoId.Except(tiposDePagosIds).Any())
                     return StatusCode(500, "Tipo Medio de pago no valido");
             }
-
+            // validamos que las categorias de producto sean validas
             if (promocion.ProductoCategoriaIds != null)
             {
                 var categoriasDeProductos = categoriasProducto.Select(x => x.Id).Distinct().ToArray();

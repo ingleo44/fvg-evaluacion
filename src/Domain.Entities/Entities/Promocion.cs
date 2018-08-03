@@ -22,32 +22,25 @@ namespace Promociones.Domain.Entities.Entities
             FechaInicio = startDate;
             FechaFin = endDate;
             Activo = activo;
-
         }
 
-
-        public void SetId(int idPromotion)
+        public Promocion()
         {
-            IdPromotion = idPromotion;
         }
 
-        public void Deactivate()
-        {
-            Activo = false;
-        }
+        public void SetId(int idPromotion) => IdPromotion = idPromotion;
+        public void Deactivate() => Activo = false;
+        public void SetUpdateDate(DateTime date) => FechaModificacion = date;
+        public void SetCreationDate() => FechaCreacion = DateTime.Now;
 
         public void SetArrayValues()
         {          
-            TipoMedioPagoId = string.IsNullOrEmpty(StrTipoMedioPagoId)?null:Array.ConvertAll<string, int> (StrTipoMedioPagoId.Split(','),int.Parse);
-            EntidadFinancieraId = string.IsNullOrEmpty(StrEntidadFinancieraId)?null: Array.ConvertAll<string, int>(StrEntidadFinancieraId.Split(','), int.Parse);
-            ProductoCategoriaIds = string.IsNullOrEmpty(StrProductoCategoriaIds)?null:Array.ConvertAll<string, int>(StrProductoCategoriaIds.Split(','), int.Parse);
-            MedioPagoIds = string.IsNullOrEmpty(StrMedioPagoIds) ?null:Array.ConvertAll<string, int>(StrMedioPagoIds.Split(','), int.Parse);
+            TipoMedioPagoId = string.IsNullOrEmpty(StrTipoMedioPagoId)?null:Array.ConvertAll(StrTipoMedioPagoId.Split(','),int.Parse);
+            EntidadFinancieraId = string.IsNullOrEmpty(StrEntidadFinancieraId)?null: Array.ConvertAll(StrEntidadFinancieraId.Split(','), int.Parse);
+            ProductoCategoriaIds = string.IsNullOrEmpty(StrProductoCategoriaIds)?null:Array.ConvertAll(StrProductoCategoriaIds.Split(','), int.Parse);
+            MedioPagoIds = string.IsNullOrEmpty(StrMedioPagoIds) ?null:Array.ConvertAll(StrMedioPagoIds.Split(','), int.Parse);
         }
-      
-        public Promocion()
-        {
-           
-        }
+
         [Key]
         public int IdPromotion { get; private set; }        
         [NotMapped]
@@ -70,6 +63,5 @@ namespace Promociones.Domain.Entities.Entities
         public float PorcentajeDescuento { get; private set; }        
         public bool Activo { get; private set; }
                
-
     }
 }

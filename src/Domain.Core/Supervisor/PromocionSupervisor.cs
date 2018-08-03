@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Promociones.Domain.Entities;
 using Promociones.Domain.Entities.Entities;
 using Promociones.Domain.Entities.Repositories;
 
@@ -81,15 +80,60 @@ namespace Promociones.Domain.Core.Supervisor
             return promotion.ProductoCategoriaIds == null || promotion.ProductoCategoriaIds.Any(x => x == productCategory);
         }
 
+
+        //public static string CheckPromotionsCollisions(Promocion promotion, List<Promocion> activePromotions)
+        //{
+        //    // Encontramos las promociones que se encuentran en el rango de las fecha de la nueva promoción que se va a crear o actualizar
+        //    var sameDatePromotions = activePromotions.Where(x =>
+        //        x.FechaInicio >= promotion.FechaInicio && x.FechaInicio < promotion.FechaFin).ToList();
+        //    if (!sameDatePromotions.Any())
+        //        return ""; // si no hay ninguna promocion en el rango de fecha permitimos la actualización
+
+
+        //    var emptyArray = new int[0];
+        //    // validamos el caso frontera en que la promocion no tenga medios de pago ni tipo de pago ni banco
+
+        //    if (promotion.MedioPagoIds == null && promotion.TipoMedioPagoId == null &&
+        //        promotion.EntidadFinancieraId == null)
+        //    {
+        //        if (sameDatePromotions.Any(x => x.MedioPagoIds== null && x.EntidadFinancieraId==null && x.TipoMedioPagoId==null))
+        //            return "Hay promociones en la misma fecha sin ningun medio de pago definido";
+        //    }
+        //    else
+        //    {
+        //        if (promotion.MedioPagoIds != null)
+        //            foreach (var paymentMethod in promotion.MedioPagoIds)
+        //            {
+        //                if (sameDatePromotions.Any(x => x.MedioPagoIds.Contains(paymentMethod)))
+        //                {
+
+        //                }
+        //            }
+
+
+        //        // En este punto sabemos que ninguna promocion tiene el mismo medio de pago asi que validamos el tipo de pago
+
+
+
+        //        // si la entidad financiera es nula asumimos que es efectivo
+        //    }
+            
+   
+        //}
+
         public async Task<bool> InsertPromotion(Promocion promotion)
         {
+            promotion.SetCreationDate();
             await _promocionRepository.InsertAsync(promotion);
             return true;
         }
 
 
+
+
         public async Task<bool> UpdatePromotion(Promocion promotion, CancellationToken ct = default(CancellationToken))
-        {          
+        {
+            promotion.SetUpdateDate(DateTime.Now);
             await _promocionRepository.UpdateAsync(promotion);
             return true;
         }
