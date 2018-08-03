@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Promociones.Domain.Entities.Entities;
 using Promociones.Domain.Entities.ViewModels;
 
 namespace Promociones.Domain.Entities.Converters

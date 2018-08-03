@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Promociones.Domain.Entities.Entities;
 
 namespace Promociones.Presentation.Api.Controllers
 {
     public class ProductoController : Controller
     {
 
-        private readonly List<Categoria> _listaCategorias = new List<Categoria>();
+        private readonly List<CategoriaProducto> _listaCategorias = new List<CategoriaProducto>();
         public ProductoController()
         {
 
-            _listaCategorias.Add(new Categoria{Id=1,Descripcion = "Electrodomesticos"});
-            _listaCategorias.Add(new Categoria { Id = 2, Descripcion = "Ropa Dama" });
-            _listaCategorias.Add(new Categoria { Id = 3, Descripcion = "Ropa Caballeros" });
-            _listaCategorias.Add(new Categoria { Id = 4, Descripcion = "Calzado Dama" });
-            _listaCategorias.Add(new Categoria { Id = 5, Descripcion = "Calzado Caballero" });
-            _listaCategorias.Add(new Categoria { Id = 6, Descripcion = "Muebles" });
+            _listaCategorias.Add(new CategoriaProducto{Id=1,Descripcion = "Electrodomesticos"});
+            _listaCategorias.Add(new CategoriaProducto { Id = 2, Descripcion = "Ropa Dama" });
+            _listaCategorias.Add(new CategoriaProducto { Id = 3, Descripcion = "Ropa Caballeros" });
+            _listaCategorias.Add(new CategoriaProducto { Id = 4, Descripcion = "Calzado Dama" });
+            _listaCategorias.Add(new CategoriaProducto { Id = 5, Descripcion = "Calzado Caballero" });
+            _listaCategorias.Add(new CategoriaProducto { Id = 6, Descripcion = "Muebles" });
         }
 
         // POST: Producto/Create
-        [HttpGet ("api/[controller]/Categoria")]
+        [HttpGet ("api/[controller]/CategoriaProducto")]
         public ActionResult Categorias(IFormCollection collection)
         {
             try
@@ -36,12 +37,4 @@ namespace Promociones.Presentation.Api.Controllers
 
        
     }
-
-
-    public class Categoria
-    {
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
-    }
-
 }

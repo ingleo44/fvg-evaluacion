@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Promociones.Domain.Entities;
+using Promociones.Domain.Entities.Entities;
 using Promociones.Domain.Entities.Repositories;
 
 namespace Promociones.Domain.Core.Supervisor
@@ -87,14 +88,8 @@ namespace Promociones.Domain.Core.Supervisor
         }
 
 
-
-        public async Task<bool> UpdatePromotion(int idPromotion, int[] idPaymentMethods, int[] idPaymentTypes, int[] idFinancialEntities,
-            int[] productCategories, int nrDues, float discountPercentage, DateTime startDate, DateTime endDate, CancellationToken ct = default(CancellationToken))
-        {
-            var promotion = new Promocion
-            (idPaymentMethods, idPaymentTypes, idFinancialEntities, productCategories, nrDues,
-                discountPercentage, startDate, endDate, true);
-            promotion.SetId(idPromotion);
+        public async Task<bool> UpdatePromotion(Promocion promotion, CancellationToken ct = default(CancellationToken))
+        {          
             await _promocionRepository.UpdateAsync(promotion);
             return true;
         }

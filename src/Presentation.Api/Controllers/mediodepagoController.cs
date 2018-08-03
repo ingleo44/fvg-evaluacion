@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Promociones.Domain.Entities.Entities;
 
 namespace Promociones.Presentation.Api.Controllers
 {
@@ -62,18 +63,6 @@ namespace Promociones.Presentation.Api.Controllers
             }
         }
 
-
-    }
-
-
-
-    public class MedioPago
-    {
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
-        public int? IdEntidadFinanciera { get; set; } 
-        public int? IdTipoPago { get; set; }
-        public bool Activo { get; set; }
 
     }
 }

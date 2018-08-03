@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Promociones.Domain.Entities;
+using Promociones.Domain.Entities.Entities;
 using Promociones.Domain.Entities.Repositories;
 
 namespace Promociones.Infrastructure.Repositories

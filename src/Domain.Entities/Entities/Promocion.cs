@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Promociones.Domain.Entities.Entities;
 
-namespace Promociones.Domain.Entities
+namespace Promociones.Domain.Entities.Entities
 {
     public class Promocion
     {
@@ -14,8 +12,8 @@ namespace Promociones.Domain.Entities
             int[] productCategories, int nrDues, float discountPercentage, DateTime startDate, DateTime endDate,
             bool activo)
         {
-            
-            StrTipoMedioPagoId = idPaymentMethods == null?null:string.Join(",", idPaymentMethods); 
+
+            StrMedioPagoIds = idPaymentMethods == null?null:string.Join(",", idPaymentMethods); 
             StrEntidadFinancieraId = idFinancialEntities==null?null:string.Join(",", idFinancialEntities);
             StrTipoMedioPagoId = idPaymentTypes==null?null:string.Join(",", idPaymentTypes);
             StrProductoCategoriaIds = productCategories==null?null:string.Join(",", productCategories);
@@ -25,13 +23,6 @@ namespace Promociones.Domain.Entities
             FechaFin = endDate;
             Activo = activo;
 
-
-            //IdPaymentMethods = idPaymentMethods;
-            //IdPaymentTypes = idPaymentTypes;
-            //IdFinancialEntities = idFinancialEntities;
-            //ProductCategories = productCategories;
-            //NrDues = nrDues;
-            //DiscountPercentage = discountPercentage;
         }
 
 

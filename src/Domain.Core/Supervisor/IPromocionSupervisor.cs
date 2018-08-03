@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Promociones.Domain.Entities;
+using Promociones.Domain.Entities.Entities;
 
 namespace Promociones.Domain.Core.Supervisor
 {
@@ -15,8 +16,7 @@ namespace Promociones.Domain.Core.Supervisor
         List<Promocion> GetPromotionsBySale(int idPaymentMethod, int idPaymentType, int idFinancialEntity, int nrDues,
             int productCategory, CancellationToken ct = default(CancellationToken));
         Task<bool> InsertPromotion(Promocion promotion);
-        Task<bool> UpdatePromotion(int idPromotion, int[] idPaymentMethods, int[] idPaymentTypes,
-            int[] idFinancialEntities, int[] productCategories, int nrDues, float discountPercentage,DateTime startDate, DateTime endDate,
+        Task<bool> UpdatePromotion(Promocion promotion,
             CancellationToken ct = default(CancellationToken));
 
         Task<bool> DeletePromotions(int[] promotions, CancellationToken ct = default(CancellationToken));
